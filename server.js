@@ -10,12 +10,19 @@
  ********************************************************************************/
 const express = require('express');
 const dotenv = require('dotenv');
+const connectDB = require('./config/db');
+
+// Load Environment Variables
+dotenv.config({ path: './config/config.env' });
+
+// Connect to database
+
+connectDB();
 
 // Route files
 const restaurants = require('./routes/restaurants');
 
-// Load Environment Variables
-dotenv.config({ path: './config/config.env' });
+
 
 const app = express();
 
