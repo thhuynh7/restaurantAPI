@@ -22,9 +22,10 @@ connectDB();
 // Route files
 const restaurants = require('./routes/restaurants');
 
-
-
 const app = express();
+
+// Body parser
+app.use(express.json());
 
 // Mount routers
 app.use('/api/restaurants', restaurants);
