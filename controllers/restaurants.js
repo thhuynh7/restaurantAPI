@@ -12,13 +12,25 @@ exports.createRestaurant = async (req, res, next) => {
 };
 
 // GET /api/restaurants
-exports.getRestaurants = (req, res, next) => {
-  res.status(200).json({ success: true, message: 'Show all restaurants' });
+exports.getRestaurants = async (req, res, next) => {
+  try {
+    const restaurant = await Restaurant.find();
+
+    res.status(200).json({ success: true, data: restaurant });
+  } catch (err) {
+    res.status(400).json( { success: false });
+  }  
 };
 
 // GET /api/restaurants/:id
-exports.getRestaurant = (req, res, next) => {
-  res.status(200).json({ success: true, message: `Show restaurant ${req.params.id}` });
+exports.getRestaurant = async (req, res, next) => {
+  try {
+    const restaurant = await Restaurant.findById(req.params.id);
+
+    res.status(200).json({ success: true, data: restaurant });
+  } catch (err) {
+    res.status(400).json( { success: false });
+  }
 };
 
 // PUT /api/restaurants/:id
